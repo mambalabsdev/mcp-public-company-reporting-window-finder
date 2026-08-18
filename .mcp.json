@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "mamba-public-company-reporting-window-finder": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@mambalabsdev/mcp-public-company-reporting-window-finder"
+      ],
+      "env": {
+        "APIFY_TOKEN": "your-apify-token"
+      }
+    }
+  }
+}

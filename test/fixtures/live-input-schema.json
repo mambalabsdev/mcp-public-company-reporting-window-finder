@@ -1,0 +1,399 @@
+{
+  "_provenance": {
+    "source": "GET https://api.apify.com/v2/actor-builds/to1IaoVnk2jTs2gZI",
+    "actorId": "uINxR7a1IW8qUTRUX",
+    "buildNumber": "0.0.4",
+    "buildId": "to1IaoVnk2jTs2gZI",
+    "copiedAt": "2026-08-18",
+    "note": "Copied verbatim from the live build record. Regenerate with scripts/sync-input-schema-fixture.mjs. Never hand edit, and never derive it from src/index.ts, which is the thing it exists to check."
+  },
+  "schema": {
+    "title": "Public Company Reporting Window Finder Input",
+    "description": "Five modes. resolve and qualify and timing take company identifiers. universe and season take filters. Every array field accepts a JSON array, a comma separated string, or a single value, because Clay sends every input as a string.",
+    "type": "object",
+    "schemaVersion": 1,
+    "properties": {
+      "mode": {
+        "title": "Mode",
+        "type": "string",
+        "description": "resolve returns identity and venue. qualify adds a listed status verdict. timing returns fiscal year end, reporting cadence, the next obligated event and your outreach window. universe builds a company list from filters. season returns reporting load per week or month.",
+        "editor": "select",
+        "enum": [
+          "resolve",
+          "qualify",
+          "timing",
+          "universe",
+          "season"
+        ],
+        "enumTitles": [
+          "resolve: identifiers to company identity",
+          "qualify: is this account publicly listed",
+          "timing: fiscal year end, next event, outreach window",
+          "universe: build a company list from filters",
+          "season: reporting load per period"
+        ],
+        "default": "resolve"
+      },
+      "company_domain": {
+        "title": "Company Domain",
+        "type": "string",
+        "description": "A single bare domain, e.g. stripe.com. The Clay column shape. Used by resolve, qualify and timing.",
+        "editor": "textfield",
+        "prefill": "10xgenomics.com"
+      },
+      "company_domains": {
+        "title": "Company Domains (batch)",
+        "type": "array",
+        "description": "Many domains at once. Used by resolve, qualify and timing.",
+        "editor": "stringList",
+        "items": {
+          "type": "string"
+        }
+      },
+      "tickers": {
+        "title": "Tickers",
+        "type": "array",
+        "description": "Exchange tickers, e.g. NWLG. Matched against the primary ticker and every venue listing.",
+        "editor": "stringList",
+        "items": {
+          "type": "string"
+        }
+      },
+      "isins": {
+        "title": "ISINs",
+        "type": "array",
+        "description": "12 character ISINs.",
+        "editor": "stringList",
+        "items": {
+          "type": "string"
+        }
+      },
+      "leis": {
+        "title": "LEIs",
+        "type": "array",
+        "description": "20 character Legal Entity Identifiers.",
+        "editor": "stringList",
+        "items": {
+          "type": "string"
+        }
+      },
+      "ciks": {
+        "title": "SEC CIKs",
+        "type": "array",
+        "description": "SEC Central Index Keys, with or without leading zeros.",
+        "editor": "stringList",
+        "items": {
+          "type": "string"
+        }
+      },
+      "company_names": {
+        "title": "Company Names",
+        "type": "array",
+        "description": "Legal or trading names. Matched on a normalized name. Former names are not available: the alias table carries tickers and ISINs only.",
+        "editor": "stringList",
+        "items": {
+          "type": "string"
+        }
+      },
+      "operating_companies_only": {
+        "title": "Operating Companies Only",
+        "type": "string",
+        "description": "Drop funds, trusts and other non operating entities. Sent as a string for Clay compatibility.",
+        "editor": "select",
+        "enum": [
+          "false",
+          "true"
+        ],
+        "default": "false"
+      },
+      "exclude_blank_checks": {
+        "title": "Exclude Blank Check Shells",
+        "type": "string",
+        "description": "Drop pre deal SPACs. Separate from the operating company filter: a blank check shell is flagged as an operating company and passes every ordinary firmographic filter.",
+        "editor": "select",
+        "enum": [
+          "false",
+          "true"
+        ],
+        "default": "false"
+      },
+      "listed_only": {
+        "title": "Keep Only Listed Companies",
+        "type": "string",
+        "description": "qualify mode. Keep only rows proven to be publicly listed.",
+        "editor": "select",
+        "enum": [
+          "false",
+          "true"
+        ],
+        "default": "false"
+      },
+      "suppress_listed": {
+        "title": "Suppress Listed Companies",
+        "type": "string",
+        "description": "qualify mode. Remove companies proven to be publicly listed, for anyone selling only into private companies. It removes what we can prove is listed; it does not warrant that the remainder is private.",
+        "editor": "select",
+        "enum": [
+          "false",
+          "true"
+        ],
+        "default": "false"
+      },
+      "assume_unmatched_is_private": {
+        "title": "Treat an Unmatched Company as Private",
+        "type": "string",
+        "description": "qualify mode. By default an unmatched company returns is_listed null, because a non match may mean the company is private OR that we do not hold its domain. Set true to opt into reading a non match as private, which sets is_listed false.",
+        "editor": "select",
+        "enum": [
+          "false",
+          "true"
+        ],
+        "default": "false"
+      },
+      "foreign_private_issuer": {
+        "title": "Foreign Private Issuer",
+        "type": "string",
+        "description": "Filter on foreign private issuer status.",
+        "editor": "select",
+        "enum": [
+          "any",
+          "only",
+          "exclude"
+        ],
+        "default": "any"
+      },
+      "us_registrant_only": {
+        "title": "US SEC Registrants Only",
+        "type": "string",
+        "description": "Keep only companies carrying an SEC CIK.",
+        "editor": "select",
+        "enum": [
+          "false",
+          "true"
+        ],
+        "default": "false"
+      },
+      "exchange_codes": {
+        "title": "Exchange Codes (MIC)",
+        "type": "array",
+        "description": "ISO 10383 MICs. 18 venues are covered.",
+        "editor": "stringList",
+        "items": {
+          "type": "string"
+        }
+      },
+      "country_codes": {
+        "title": "Country Codes",
+        "type": "array",
+        "description": "ISO 3166-1 alpha-2, e.g. US, GB, FR.",
+        "editor": "stringList",
+        "items": {
+          "type": "string"
+        }
+      },
+      "regions": {
+        "title": "Regions",
+        "type": "array",
+        "description": "Shorthand for a set of venues and countries: us, uk, eu. Widens an explicit exchange or country filter rather than replacing it.",
+        "editor": "stringList",
+        "items": {
+          "type": "string"
+        }
+      },
+      "sectors": {
+        "title": "Sectors",
+        "type": "array",
+        "description": "SEC SIC descriptions, e.g. Pharmaceutical Preparations. Populated on roughly 65 percent of the publishable universe.",
+        "editor": "stringList",
+        "items": {
+          "type": "string"
+        }
+      },
+      "security_types": {
+        "title": "Security Types",
+        "type": "array",
+        "description": "ordinary_shares, depositary_receipt, preferred_shares.",
+        "editor": "stringList",
+        "items": {
+          "type": "string"
+        }
+      },
+      "public_float_bands": {
+        "title": "Public Float Bands",
+        "type": "array",
+        "description": "micro, small, mid, large, mega, unknown. Size runs on public float because market capitalization is not populated anywhere in this dataset.",
+        "editor": "stringList",
+        "items": {
+          "type": "string"
+        }
+      },
+      "fiscal_year_end_months": {
+        "title": "Fiscal Year End Months",
+        "type": "array",
+        "description": "Integers 1 to 12. Fiscal year end is effectively a United States field in this dataset.",
+        "editor": "stringList",
+        "items": {
+          "type": "string"
+        }
+      },
+      "exclude_december_fiscal_year_end": {
+        "title": "Exclude December Fiscal Year End",
+        "type": "string",
+        "description": "Keep only companies whose fiscal year ends in a month other than December, the accounts whose budget cycle is out of phase with a calendar quarter.",
+        "editor": "select",
+        "enum": [
+          "false",
+          "true"
+        ],
+        "default": "false"
+      },
+      "cadences": {
+        "title": "Reporting Cadences",
+        "type": "array",
+        "description": "quarterly, semiannual, annual, unknown.",
+        "editor": "stringList",
+        "items": {
+          "type": "string"
+        }
+      },
+      "min_cadence_confidence": {
+        "title": "Minimum Cadence Confidence",
+        "type": "string",
+        "description": "0 to 1. Rows whose cadence confidence falls below this return a null timing block with a stated reason rather than a guess. Quarterly cadence averages 0.94, annual 0.40, semiannual 0.21.",
+        "editor": "textfield",
+        "default": "0"
+      },
+      "event_types": {
+        "title": "Event Types",
+        "type": "array",
+        "description": "full_year_results, half_year_results, quarterly_results, trading_update, annual_report_publication, sustainability_report_publication, agm, proxy_filing, capital_markets_day.",
+        "editor": "stringList",
+        "items": {
+          "type": "string"
+        }
+      },
+      "window_lead_days": {
+        "title": "Outreach Window Lead Days",
+        "type": "string",
+        "description": "How many days before the event the outreach window opens. Default 70.",
+        "editor": "textfield",
+        "default": "70"
+      },
+      "window_lag_days": {
+        "title": "Outreach Window Lag Days",
+        "type": "string",
+        "description": "How many days before the event the outreach window closes. Default 42. Must be less than the lead.",
+        "editor": "textfield",
+        "default": "42"
+      },
+      "window_statuses": {
+        "title": "Window Statuses",
+        "type": "array",
+        "description": "Keep only rows in these window states: open, not_yet, closed_passed, no_event.",
+        "editor": "stringList",
+        "items": {
+          "type": "string"
+        }
+      },
+      "max_days_to_event": {
+        "title": "Maximum Days to Event",
+        "type": "string",
+        "description": "Drop rows whose next event is further away than this. A cost control.",
+        "editor": "textfield"
+      },
+      "include_constrained_period": {
+        "title": "Include the Constrained Announcement Period",
+        "type": "string",
+        "description": "Emit the period in which a listed company is constrained in what it can announce, derived from the same window numbers. Useful for campaign and announcement timing.",
+        "editor": "select",
+        "enum": [
+          "true",
+          "false"
+        ],
+        "default": "true"
+      },
+      "season_group_by": {
+        "title": "Season Group By",
+        "type": "string",
+        "description": "season mode. Bucket size.",
+        "editor": "select",
+        "enum": [
+          "week",
+          "month"
+        ],
+        "default": "week"
+      },
+      "season_split_by": {
+        "title": "Season Split By",
+        "type": "string",
+        "description": "season mode. Optional second dimension.",
+        "editor": "select",
+        "enum": [
+          "none",
+          "sector",
+          "country",
+          "exchange_code"
+        ],
+        "default": "none"
+      },
+      "season_from": {
+        "title": "Season From",
+        "type": "string",
+        "description": "season mode. ISO date. Defaults to today.",
+        "editor": "textfield"
+      },
+      "season_to": {
+        "title": "Season To",
+        "type": "string",
+        "description": "season mode. ISO date. Defaults to 180 days from today.",
+        "editor": "textfield"
+      },
+      "min_provenance_confidence": {
+        "title": "Minimum Source Confidence",
+        "type": "string",
+        "description": "Set to high to exclude rows whose source terms were never read.",
+        "editor": "select",
+        "enum": [
+          "any",
+          "high"
+        ],
+        "default": "any"
+      },
+      "exclude_name_only_matches": {
+        "title": "Exclude Name Only Identity Matches",
+        "type": "string",
+        "description": "Drop rows whose identity link rests on a name and country agreeing rather than on an identifier. Use this wherever a wrong identity link matters.",
+        "editor": "select",
+        "enum": [
+          "false",
+          "true"
+        ],
+        "default": "false"
+      },
+      "exclude_share_alike": {
+        "title": "Exclude Share Alike Sourced Rows",
+        "type": "string",
+        "description": "Drop rows derived from CC BY-SA sources, whose share alike condition may not suit a closed product.",
+        "editor": "select",
+        "enum": [
+          "false",
+          "true"
+        ],
+        "default": "false"
+      },
+      "limit": {
+        "title": "Limit",
+        "type": "string",
+        "description": "Maximum rows for universe and season. Truncation is always reported, never silent.",
+        "editor": "textfield",
+        "default": "1000"
+      },
+      "source_tag": {
+        "title": "Source Tag",
+        "type": "string",
+        "description": "Internal attribution tag set by Mamba Labs on published task examples. Not required, and nothing depends on it. Leave it empty.",
+        "editor": "hidden"
+      }
+    }
+  }
+}

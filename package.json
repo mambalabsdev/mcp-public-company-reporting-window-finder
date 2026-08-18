@@ -1,0 +1,61 @@
+{
+  "name": "@mambalabsdev/mcp-public-company-reporting-window-finder",
+  "displayName": "Public Company Earnings Dates and Reporting Window Finder",
+  "version": "1.0.0",
+  "description": "MCP server for the Mamba Labs Public Company Earnings Dates and Reporting Window Finder actor on Apify. A domain, ticker, ISIN, LEI or CIK in, and out comes fiscal year end, reporting cadence, the next reporting date, days to event and the open and close of an outreach window. Five tools, one per actor mode. Timing rows cover US companies only.",
+  "type": "module",
+  "bin": {
+    "mcp-public-company-reporting-window-finder": "./build/index.js"
+  },
+  "scripts": {
+    "build": "tsc && chmod +x build/index.js",
+    "test": "npm run build && node --test test/*.test.js",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "earnings-calendar",
+    "reporting-dates",
+    "apify",
+    "clay"
+  ],
+  "tags": [
+    "mcp",
+    "earnings-calendar",
+    "reporting-dates",
+    "apify",
+    "clay"
+  ],
+  "category": "productivity",
+  "author": {
+    "name": "Mamba Labs",
+    "email": "labs@mambamindsetgrowth.com"
+  },
+  "license": "MIT",
+  "logo": "https://mmg-brand-assets.netlify.app/apify-actor-pngs/apify_webhook.png",
+  "homepage": "https://mambabuilt.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mambalabsdev/mcp-public-company-reporting-window-finder"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "typescript": "^5.6.0"
+  },
+  "files": [
+    "build",
+    "README.md",
+    "LICENSE",
+    "SECURITY.md"
+  ],
+  "mcpServers": ".mcp.json",
+  "mcpName": "com.mambabuilt/mcp-public-company-reporting-window-finder"
+}
