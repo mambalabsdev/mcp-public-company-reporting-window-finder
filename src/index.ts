@@ -193,7 +193,7 @@ const server = new McpServer({
 });
 
 const ANNOTATIONS = {
-  readOnlyHint: true,
+  readOnlyHint: false,
   destructiveHint: false,
   idempotentHint: true,
   openWorldHint: true,
