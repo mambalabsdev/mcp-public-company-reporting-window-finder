@@ -1,10 +1,10 @@
 {
   "_provenance": {
-    "source": "GET https://api.apify.com/v2/actor-builds/to1IaoVnk2jTs2gZI",
+    "source": "GET https://api.apify.com/v2/actor-builds/1tl6SXZbjiLCBVnAx",
     "actorId": "uINxR7a1IW8qUTRUX",
-    "buildNumber": "0.0.4",
-    "buildId": "to1IaoVnk2jTs2gZI",
-    "copiedAt": "2026-08-18",
+    "buildNumber": "0.0.15",
+    "buildId": "1tl6SXZbjiLCBVnAx",
+    "copiedAt": "2026-10-16",
     "note": "Copied verbatim from the live build record. Regenerate with scripts/sync-input-schema-fixture.mjs. Never hand edit, and never derive it from src/index.ts, which is the thing it exists to check."
   },
   "schema": {

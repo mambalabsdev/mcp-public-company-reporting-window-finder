@@ -1,10 +1,10 @@
-# Public Company Earnings Dates and Reporting Window Finder MCP Server
+# Reporting Window Finder MCP Server
 
 ## Tagline
 Find when a public company reports next, and the outreach window to work around it.
 
 ## Description
-An MCP server that exposes the Mamba Labs Public Company Earnings Dates and Reporting Window Finder actor on Apify (immutable Actor ID `uINxR7a1IW8qUTRUX`). Give it a domain, ticker, ISIN, LEI, or CIK and it returns when that company reports: fiscal year end, reporting cadence, the next reporting date, days to event, and the open and close of an outreach window you define.
+An MCP server that exposes the Mamba Labs Reporting Window Finder actor on Apify (immutable Actor ID `uINxR7a1IW8qUTRUX`). Give it a domain, ticker, ISIN, LEI, or CIK and it returns when that company reports: fiscal year end, reporting cadence, the next reporting date, days to event, and the open and close of an outreach window you define.
 
 The server exposes five tools, one per actor mode. You never pass a mode; each tool sets it and exposes only the inputs that mode uses. `resolve_company` returns identity and venue. `qualify_company` returns a listed status verdict. `get_reporting_timing` returns the timing block and the outreach window. `build_company_universe` builds a company list from filters. `get_reporting_season` returns reporting load per week or month.
 
