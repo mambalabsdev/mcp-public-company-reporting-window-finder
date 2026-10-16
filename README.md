@@ -1,8 +1,8 @@
-# Public Company Earnings Dates and Reporting Window Finder MCP Server
+# Reporting Window Finder MCP Server
 
 [![smithery badge](https://smithery.ai/badge/@mambalabsdev/mcp-public-company-reporting-window-finder)](https://smithery.ai/server/@mambalabsdev/mcp-public-company-reporting-window-finder)
 
-MCP server for the Mamba Labs [Public Company Earnings Dates and Reporting Window Finder](https://apify.com/mambalabs/public-company-reporting-window-finder) actor on Apify.
+MCP server for the Mamba Labs [Reporting Window Finder](https://apify.com/mambalabs/public-company-reporting-window-finder) actor on Apify.
 
 Give it a domain, ticker, ISIN, LEI or CIK and it tells you **when that public company reports**, and when to reach out around it: fiscal year end, reporting cadence, the next reporting date, days to event, and the open and close of an outreach window you define.
 
