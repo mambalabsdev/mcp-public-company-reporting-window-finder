@@ -1,6 +1,6 @@
 # Reporting Window Finder MCP Server
 
-[![smithery badge](https://smithery.ai/badge/@mambalabsdev/mcp-public-company-reporting-window-finder)](https://smithery.ai/server/@mambalabsdev/mcp-public-company-reporting-window-finder)
+[![LightNow capabilities](https://lightnow.ai/badge/com.mambabuilt/mcp-public-company-reporting-window-finder)](https://lightnow.ai/servers/com.mambabuilt/mcp-public-company-reporting-window-finder)
 
 <a href="https://mcprush.com/to/public-company-reporting-window-finder-mcp?ref=badge"><img width="380" height="200" src="https://mcprush.com/badge/public-company-reporting-window-finder-mcp/card.svg" alt="Public Company Reporting Window Finder MCP server" /></a>
 
